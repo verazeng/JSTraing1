@@ -36,6 +36,12 @@ If you have already got `node` & `npm` installed locally, goto step 2.
 
 		gulp
 
+8. Run HTTP server locally
+
+		./server.sh
+
+	open browser, go to [http://localhost:9999](http://localhost:9999)
+
 #### Working with location backend service
 
 1. Get all locations
