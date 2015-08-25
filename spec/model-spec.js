@@ -1,9 +1,9 @@
 
-describe('LocationModal', function(){
+describe('LocationModel', function(){
   'use strict';
 
   var SEARCH_API = 'http://location-backend-service.herokuapp.com/locations';
-  var modal = new LocationModal();
+  var model = new LocationModel();
 
   beforeEach(function() {
       jasmine.Ajax.install();
@@ -14,14 +14,14 @@ describe('LocationModal', function(){
   });
 
   it('should call the right search api with no param', function(){
-    modal(false, function(data){});
+    model(false, function(data){});
 
     var request = jasmine.Ajax.requests.mostRecent();
     expect(request.url).toBe(SEARCH_API);
   });
 
   it('should call the right search api', function(){
-    modal('bj', function(data){});
+    model('bj', function(data){});
 
     var request = jasmine.Ajax.requests.mostRecent();
     expect(request.url).toBe(SEARCH_API + '?name=bj');
@@ -29,7 +29,7 @@ describe('LocationModal', function(){
 
   it("should return the specified locations", function() {
     var result;
-    modal(false, function(data) {
+    model(false, function(data) {
         result = data;
     });
 

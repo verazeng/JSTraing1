@@ -3,8 +3,8 @@ $(function(){
   'use strict';
 
   var views = new LocationViews();
-  var modal = new LocationModal();
-  var locationInstance = new Location(views, modal);
+  var model = new LocationModel();
+  var locationInstance = new Location(views, model);
 
   $('#searchForm #searchButton').click(function(){
     locationInstance.search($('#locationInput').val())

@@ -1,4 +1,4 @@
-function LocationModal() {
+function LocationModel() {
 	return function (key, callback) {
 		var name = key ? '?name=' + key : '' ;
 	    var LOCATION_SERVICE_API = 'http://location-backend-service.herokuapp.com/locations';

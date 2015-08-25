@@ -13,7 +13,7 @@ describe('Location', function(){
   it('should get the right dom after click search button', function(){
     var fixture = setFixtures('<div id="searchResults"><div id="results"></div></div>')
 
-    var locationInstance = new Location(new LocationViews(), new LocationModal());
+    var locationInstance = new Location(new LocationViews(), new LocationModel());
     locationInstance.search('bj');
     jasmine.Ajax.requests.mostRecent().respondWith(TestResponses.search.success);
 
@@ -28,7 +28,7 @@ describe('Location', function(){
   it('should get the right dom after click like link', function(){
     var fixture = setFixtures('<div id="likedPlaces"><ul></ul></div>')
 
-    var locationInstance = new Location(new LocationViews(), new LocationModal());
+    var locationInstance = new Location(new LocationViews(), new LocationModel());
     locationInstance.like('city1');
 
     expect(fixture.find('li.like').length).toBe(1);
@@ -43,13 +43,13 @@ describe('Location', function(){
   it('should only like one city once', function(){
     var fixture = setFixtures('<div id="likedPlaces"><ul></ul></div>')
 
-    var locationInstance = new Location(new LocationViews(), new LocationModal());
+    var locationInstance = new Location(new LocationViews(), new LocationModel());
     locationInstance.like('city1');
 
     expect(fixture.find('li.like').length).toBe(1);
 
     locationInstance.like('city1');
-    
+
     expect(fixture.find('li.like').length).toBe(1);
   });
 

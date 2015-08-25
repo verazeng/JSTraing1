@@ -1,9 +1,9 @@
-function Location(views, modal) {	
+function Location(views, model) {	
 	var searchRoot = '#searchResults #results';
 	var likeRoot = '#likedPlaces';
 	return {
 		search : function (searchKey) {
-			modal(searchKey, function(data) {
+			model(searchKey, function(data) {
 		      	var renderedResults = _.map(data, function(result){
 		                  return views.searchResultTemplete(result);
 		                });
