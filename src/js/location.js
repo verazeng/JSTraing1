@@ -1,38 +1,20 @@
-function Location() {	
-	var getLocationData = function (locationKey, callback) {
-		var name = locationKey ? '?name=' + locationKey : '' ;
-	    var LOCATION_SERVICE_API = 'http://location-backend-service.herokuapp.com/locations';
-
-		$.ajax({
-	      url: LOCATION_SERVICE_API + name,
-	      success: function(data){
-	      	callback(data);
-	      }
-	    })
-	};
-
+function Location(views, modal) {	
+	var searchRoot = '#searchResults #results';
+	var likeRoot = '#likedPlaces';
 	return {
-		search : function (searchKey, rootSelector) {
-			var resultTemplate = _.template('<div class="panel large-12 columns">' +
-		                                            '<h5><%= name %></h5>' +
-		                                            '<h6><%= description %></h6>' +
-		                                            '<a href="#" class="like button tiny right">Like</a>' +
-		                                          '</div>');
-
-			getLocationData(searchKey, function(data) {
-				console.log(data);
+		search : function (searchKey) {
+			modal(searchKey, function(data) {
 		      	var renderedResults = _.map(data, function(result){
-		                  return resultTemplate(result);
+		                  return views.searchResultTemplete(result);
 		                });
-		      	$(rootSelector).empty();
-      			$(rootSelector).append(renderedResults);
+		      	$(searchRoot).empty();
+      			$(searchRoot).append(renderedResults);
 		  	});
 		},
-		like : function (placeName, rootSelector) {
-			var likedTemplate = _.template('<li class="like"><%= place %></li>')
-			var alreadyInLikedPlaces = _.find($(rootSelector +' li'), function(list) { return list.textContent == place})
+		like : function (placeName) {
+			var alreadyInLikedPlaces = _.find($(likeRoot +' li'), function(list) { return list.textContent == placeName})
         	if(!alreadyInLikedPlaces) {
-          		$('ul', $(rootSelector)).append(likedTemplate({place: placeName}))
+          		$('ul', $(likeRoot)).append(views.likedResultTemplete({place: placeName}))
         	}  
 		}
 	};

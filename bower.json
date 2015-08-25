@@ -16,6 +16,6 @@
   },
   "devDependencies": {
     "jasmine-jquery": "~2.1.0",
-    "jasmine-ajax": "~3.2.0"
+    "jasmine-ajax": "~2.99.0"
   }
 }
