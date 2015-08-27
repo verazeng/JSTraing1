@@ -1,4 +1,8 @@
-var SearchResultsView = Backbone.View.extend({
+var Backbone = require('backbone');
+var _ = require('underscore');
+var $ = require('jquery');
+
+module.exports = Backbone.View.extend({
   initialize: function(searchResultsModel, likePlacesModel) {
     this.searchResultsModel = searchResultsModel;
     this.searchResultsModel.bind('change:searchResults', _.bind(this.render, this));

@@ -1,4 +1,8 @@
-var LikePlacesView = Backbone.View.extend({
+var Backbone = require('backbone');
+var _ = require('underscore');
+var $ = require('jquery');
+
+module.exports = Backbone.View.extend({
   initialize: function(model) {
     this.model = model;
     this.model.bind('change:likePlaces', _.bind(this.render, this));

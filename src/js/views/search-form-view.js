@@ -1,4 +1,8 @@
-var SearchFormView = Backbone.View.extend({
+var Backbone = require('backbone');
+var _ = require('underscore');
+var $ = require('jquery');
+
+module.exports = Backbone.View.extend({
   initialize: function(model) {
     this.model = model;
     this.template = $('#search-form-template').html();
@@ -15,16 +19,16 @@ var SearchFormView = Backbone.View.extend({
 
     var searchKey = $('#location-input').val();
     var LOACTION_SEARCH_API = 'http://location-backend-service.herokuapp.com/locations';
-	var searchAPI = searchKey ? LOACTION_SEARCH_API + '?name=' + searchKey : LOACTION_SEARCH_API;
+  	var searchAPI = searchKey ? LOACTION_SEARCH_API + '?name=' + searchKey : LOACTION_SEARCH_API;
 
-	var formView = this;
-	$.ajax({
-      url: searchAPI,
-      success: function(data) {
-		formView.model.set('searchResults', data);
-	    formView.model.trigger('change:searchResults');
-	  }
-	})
+  	var that = this;
+  	$.ajax({
+        url: searchAPI,
+        success: function(data) {
+  		that.model.set('searchResults', data);
+  	    that.model.trigger('change:searchResults');
+  	  }
+  	})
   },
 
   render: function() {
