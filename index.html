@@ -1,66 +1,76 @@
 <!DOCTYPE HTML>
 <html>
-    <head>
-        <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <link rel="stylesheet" href="src/css/normalize.css" title="" type="" />
+    <link rel="stylesheet" href="src/css/foundation.css" title="" type="" />
+    <link rel="stylesheet" href="src/css/style.css">
+    <title>Locations</title>
+  </head>
+  
+  <script type="text/template" id="search-form-template">
+    <div  class="large-9 medium-9 columns">
+      <input type="text" id="locationInput" value="" placeholder="Type a location name to search"/>
+    </div>
+    <div  class="large-3 medium-3 columns">
+      <input type="button" class="submit button tiny" id="search-button" value="search" />
+    </div>
+  </script>
 
-        <link rel="stylesheet" href="src/css/normalize.css" title="" type="" />
-        <link rel="stylesheet" href="src/css/foundation.css" title="" type="" />
-        <link rel="stylesheet" href="src/css/style.css">
+  <script type="text/template" id="search-results-template">
+    <h4>Search results</h4>
+    <div id="results">
+      <% _.each(searchResults, function(result) { %>
+        <div class="panel large-12 columns">
+          <h5><%= result.name %></h5>
+          <h6><%= result.description %></h6>
+          <a href="#" class="like button tiny right" data-name="<%= result.name %>">Like</a>
+        </div>
+      <% }); %>
+    </div>
+  </script>
+  
+  <script type="text/template" id="liked-places-template">
+    <h4>Places I liked</h4>
+    <nav>
+      <ul>
+        <% _.each(likePlaces, function(place) { %>
+          <li class="like"><%= place %></li>
+        <% }); %>
+      </ul>
+    </nav>
+  </script>
 
-        <title>Locations</title>
-    </head>
-    <script src="vendor/jquery/dist/jquery.min.js"></script>
-    <script src="vendor/underscore/underscore-min.js"></script>
-    <script src="src/js/model.js"></script>
-    <script src="src/js/views.js"></script>
-    <script src="src/js/location.js"></script>
-    <script src="src/js/index.js"></script>
-    <body>
-      <div class="contain-to-grid">
-        <nav class="top-bar" data-topbar>
-
-        </nav>
+  <body>
+    <div class="contain-to-grid">
+      <nav class="top-bar" data-topbar>
+      </nav>
+    </div>
+    <div id="container">
+      <div class="row">
+        <div id="search-Form">
+        </div>
       </div>
+      <div class="row">
+        <hr class="large-12 columns" />
+      </div>
+      <div class="row">
+        <div id="search-results" class="large-8 medium-8 columns">
+        </div>
+        <div id="liked-places"  class="large-4 medium-4 columns">
+        </div>
+      </div>
+    </div>
 
-         <div id="container">
-             <div class="row">
-                 <div id="searchForm">
-                   <div  class="large-9 medium-9 columns">
-                     <input type="text" id="locationInput" value="" placeholder="Type a location name to search"/>
-                   </div>
-                   <div  class="large-3 medium-3 columns">
-                       <input type="button" class="submit button tiny" id="searchButton" value="search" />
-                   </div>
-                 </div>
-             </div>
-
-            <div class="row">
-              <hr class="large-12 columns" />
-            </div>
-
-            <div class="row">
-
-              <div id="searchResults" class="large-8 medium-8 columns">
-                  <h4>Search results</h4>
-                  <div id="results">
-                    <div class="panel large-12 columns">
-                      <h5>Place of interesting</h5>
-                      <h6>Description of the place</h6>
-                      <a href="#" class="like button tiny right">Like</a>
-                    </div>
-                  </div>
-              </div>
-
-              <div id="likedPlaces"  class="large-4 medium-4 columns">
-                  <h4>Places I liked</h4>
-                  <nav>
-                      <ul>
-                        <li class="like">Liked place</li>
-                      </ul>
-                  </nav>
-              </div>
-
-            </div>
-         </div>
-    </body>
+    <script src="vendor/jquery/dist/jquery.js"></script>
+    <script src="vendor/underscore/underscore.js"></script>
+    <script src="vendor/backbone/backbone.js"></script>
+    
+    <script src="src/js/search-form-view.js"></script>
+    <script src="src/js/search-results-view.js"></script>
+    <script src="src/js/like-places-view.js"></script>
+    <script src="src/js/search-results-model.js"></script>
+    <script src="src/js/like-places-model.js"></script>
+    <script src="src/js/index.js"></script>
+  </body>
 </html>

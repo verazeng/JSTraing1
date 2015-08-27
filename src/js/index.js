@@ -1,17 +1,13 @@
 
 $(function(){
-  'use strict';
+  var searchResultsModel = new SearchResultsModel();
+  var likePlacesModel = new LikePlacesModel();
 
-  var views = new LocationViews();
-  var model = new LocationModel();
-  var locationInstance = new Location(views, model);
+  var searchFormView = new SearchFormView(searchResultsModel);
+  var searchResultsView = new SearchResultsView(searchResultsModel, likePlacesModel);
+  var likePlacesView = new LikePlacesView(likePlacesModel);
 
-  $('#searchForm #searchButton').click(function(){
-    locationInstance.search($('#locationInput').val())
-  });
-
-  $('#searchResults #results').on('click', '.like', function(){
-      var place = $('h5', this.parentElement).text();
-      locationInstance.like(place);
-  })
+  searchFormView.render();
+  searchResultsView.render();
+  likePlacesView.render();
 })
